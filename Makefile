@@ -1,20 +1,22 @@
 # C++ Makefile
 
 CXX = g++
+CXXFLAGS = -g -Wall -std=c++11 
 
-CXXFLAGS = -g -Wall -std=c++11
+LIB = -lglut -lGL -lGLU 
+INCLUDE = -I include -lm
 
-SRC = $(wildcard *.cpp)
-
+SRC = $(wildcard src/*.cpp)
 OBJS = $(patsubst %.cpp, %.o, $(SRC))
 
 TARGET = prog
 
-%.o: %.cpp %.h
-	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+%.o: %.cpp 
+	$(CXX) $(CXXFLAGS) $(INCLUDE) -c $< -o $@
 
 all: $(OBJS)
-	$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJS)
+	$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJS) $(LIB)
 
 clean:
 	rm -f $(OBJS)
