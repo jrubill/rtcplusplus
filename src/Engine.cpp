@@ -9,6 +9,7 @@ Engine *Engine::getInstance() {
 }
 
 std::vector<Color>& Engine::getBuffer() {
+    loadScene(); 
     for (int i = 0; i < height; i++) {
         for (int j = 0; j < width; j++) {
             float closest = 1000000;
@@ -24,19 +25,26 @@ std::vector<Color>& Engine::getBuffer() {
 }
 
 Color Engine::raytrace(Ray &ray, float &t, float &closest) const {
-    Sphere sphere(Vec3(250, 250, 400), 50);
+     
+    //Sphere sphere(Vec3(250, 250, 400), 50);
     Pointlight light(Vec3(0,0,0));
-    if (sphere.intersect(ray,t)) {
-        Vec3 hitpoint = ray.getOrigin() + ray.getDir() * t; 
+    for (Object const *obj : objs) { 
+        if (obj->intersect(ray,t)) {
+            Vec3 hitpoint = ray.getOrigin() + ray.getDir() * t; 
         
-        Vec3 l = light.getCenter() - hitpoint;
-        Vec3 n = sphere.getNormal(hitpoint);
+            Vec3 l = light.getCenter() - hitpoint;
+            Vec3 n = obj->getNormal(hitpoint);
         
-        n.normalize();
-        l.normalize();
+            n.normalize();
+            l.normalize();
         
-        float dt = l.dot(n); 
-        return Color( (sphere.getColor()*0.4) + (Color(0, 200, 90) * dt)*0.7);
+            float dt = l.dot(n); 
+            return Color( (obj->getColor()*0.4) + (Color(0, 200, 90) * dt)*0.7);
+        }
     }
     return Color(0,0,0);
+}
+
+void Engine::loadScene() {
+    objs.push_back(new Sphere(Vec3(250,250,400), 200));
 }

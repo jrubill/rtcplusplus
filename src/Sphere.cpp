@@ -1,6 +1,6 @@
 #include "Sphere.h"
 
-bool Sphere::intersect(Ray &r, float &t) {
+bool Sphere::intersect(Ray &r, float &t) const {
     Vec3 v = r.getOrigin() - center;
     Vec3 dir = r.getDir();
     float a = dir.dot(dir);
@@ -21,14 +21,14 @@ bool Sphere::intersect(Ray &r, float &t) {
     return true;
 }
 
-Vec3 Sphere::getNormal(Vec3 &p) {
+Vec3 Sphere::getNormal(Vec3 &p) const {
     return ((p - center) / radius);
 }
 
-Color Sphere::getColor() {
+Color Sphere::getColor() const {
     return color;
 }
 
-Vec3 Sphere::getCenter() {
+Vec3 Sphere::getCenter() const {
     return center;
 }

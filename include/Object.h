@@ -6,9 +6,9 @@
 #include "Ray.h"
 class Object {
 public:
-    virtual bool intersect(Ray&, float&) = 0;
-    virtual Color getColor() = 0;
-    virtual Vec3 getNormal(Vec3&) = 0;
-    virtual Vec3 getCenter() = 0;
+    virtual bool intersect(Ray&, float&) const = 0;
+    virtual Color getColor() const = 0;
+    virtual Vec3 getNormal(Vec3&) const = 0;
+    virtual Vec3 getCenter() const = 0;
 };
 #endif // __OBJECT_H__
