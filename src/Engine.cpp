@@ -22,9 +22,11 @@ std::vector<Color>& Engine::getBuffer() {
     return buffer;
 }
 
-Color Engine::raytrace(Ray &ray, float &t, float &closest) {
+Color Engine::raytrace(Ray &ray, float &t, float &closest) const {
     Sphere sphere(Vec3(250, 400, 400), 20);
-    if (sphere.intersect(ray,t))
+    if (sphere.intersect(ray,t)) {
+        Vec3 hitpoint = ray.getOrigin() + ray.getDir() * t;    
         return Color(0,100,150);
+    }
     return Color(0,0,0);
 }

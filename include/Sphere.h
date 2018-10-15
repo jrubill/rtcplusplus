@@ -11,7 +11,10 @@ public:
     Sphere(Vec3 c, float r) : radius(r), center(c), color(0,0,255) {}
 
     bool intersect(Ray&,float&);
+
     Vec3 getCenter();
+    Vec3 getNormal(Vec3 &p);
+    Color getColor();
 
 private:
     float radius;

@@ -14,7 +14,7 @@ public:
     
     static Engine *getInstance();
     std::vector<Color>& getBuffer();
-    Color raytrace(Ray&, float&, float&);
+    Color raytrace(Ray&, float&, float&) const;
 private:
     Engine(const Engine&) = delete;
 
