@@ -8,6 +8,10 @@ Engine *Engine::getInstance() {
     return instance;
 }
 
+Engine::~Engine() {
+    for (Object *obj : objs) delete obj;
+}
+
 std::vector<Color>& Engine::getBuffer() {
     loadScene(); 
     for (int i = 0; i < height; i++) {
@@ -26,7 +30,6 @@ std::vector<Color>& Engine::getBuffer() {
 
 Color Engine::raytrace(Ray &ray, float &t, float &closest) const {
      
-    //Sphere sphere(Vec3(250, 250, 400), 50);
     Pointlight light(Vec3(0,0,0));
     for (Object const *obj : objs) { 
         if (obj->intersect(ray,t)) {
@@ -39,7 +42,7 @@ Color Engine::raytrace(Ray &ray, float &t, float &closest) const {
             l.normalize();
         
             float dt = l.dot(n); 
-            return Color( (obj->getColor()*0.4) + (Color(0, 200, 90) * dt)*0.7);
+            return Color( (obj->getColor()*0.4) + (Color(255,255,255) * dt)*0.7);
         }
     }
     return Color(0,0,0);
@@ -47,4 +50,6 @@ Color Engine::raytrace(Ray &ray, float &t, float &closest) const {
 
 void Engine::loadScene() {
     objs.push_back(new Sphere(Vec3(250,250,400), 200));
+    objs.push_back( (new Sphere(Vec3(100,100,400), 100)));
+    dynamic_cast<Sphere *>(objs.front())->setColor(Color(200,100,100));
 }
