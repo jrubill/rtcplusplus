@@ -8,7 +8,7 @@
 class Sphere : public Object {
 public:
     Sphere() : radius(1), center(1,1,1), color() {}
-    Sphere(Vec3 c, float r) : radius(r), center(c), color(0,0,255) {}
+    Sphere(Vec3 c, float r) : radius(r), center(c), color(0,0,150) {}
 
     bool intersect(Ray&,float&);
 

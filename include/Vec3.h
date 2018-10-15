@@ -1,6 +1,8 @@
 #ifndef __VEC3_H__
 #define __VEC3_H__
 
+#include <math.h>
+
 class Vec3 {
 public:
     Vec3() : x(0), y(0), z(0) {}
@@ -13,19 +15,30 @@ public:
     const float getZ() const { return z; }
 
 
+    void normalize() {
+        float len = getLength();
+        x /= len;
+        y /= len;
+        z /= len;
+    }
+
+    float getLength() {
+       return sqrt(x *x + y * y + z * z); 
+    }
+
     // overloading operators
-    void operator+=(const Vec3 &rhs) {
+    virtual void operator+=(const Vec3 &rhs) {
         x += rhs.x;
         y += rhs.y;
         z += rhs.z;
     }
-    void operator-=(const Vec3 &rhs) {
+    virtual void operator-=(const Vec3 &rhs) {
         x -= rhs.x;
         y -= rhs.y;
         z -= rhs.z;
     }
 
-    void operator*=(const Vec3 &rhs) {
+    virtual void operator*=(const Vec3 &rhs) {
         x *= rhs.x;
         y *= rhs.y;
         z *= rhs.z;
@@ -44,11 +57,11 @@ public:
     }
 
     Vec3 operator+(const Vec3 &rhs) const {
-        return Vec3(x + rhs.y, y + rhs.y, z + rhs.z);
+        return Vec3(x + rhs.x, y + rhs.y, z + rhs.z);
     }
 
     Vec3 operator-(const Vec3 &rhs) const {
-        return Vec3(x - rhs.y, y - rhs.y, z - rhs.z);
+        return Vec3(x - rhs.x, y - rhs.y, z - rhs.z);
     }
 
     Vec3 operator*(const float scale) {

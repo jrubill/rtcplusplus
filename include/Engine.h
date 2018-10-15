@@ -6,7 +6,7 @@
 #include "Object.h"
 #include <vector>
 #include "Sphere.h"
-
+#include <iostream>
 class Engine {
 public:
     Engine() : width(500), height(500), buffer() 

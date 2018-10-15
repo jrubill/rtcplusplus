@@ -20,3 +20,15 @@ bool Sphere::intersect(Ray &r, float &t) {
     t /= 2*a;
     return true;
 }
+
+Vec3 Sphere::getNormal(Vec3 &p) {
+    return ((p - center) / radius);
+}
+
+Color Sphere::getColor() {
+    return color;
+}
+
+Vec3 Sphere::getCenter() {
+    return center;
+}
