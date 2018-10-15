@@ -6,6 +6,7 @@
 class Ray {
 public:
     Ray() : orig(), dir() {}
+    Ray(Vec3 &o, Vec3 &d) : orig(o), dir(d) {}
     const Vec3 getOrigin() const { return orig; }
     const Vec3 getDir() const { return dir; }
 private:

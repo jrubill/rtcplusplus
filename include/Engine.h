@@ -5,7 +5,7 @@
 #include "Ray.h"
 #include "Object.h"
 #include <vector>
-
+#include "Sphere.h"
 
 class Engine {
 public:
