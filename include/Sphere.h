@@ -15,7 +15,9 @@ public:
     Vec3 getCenter() const;
     Vec3 getNormal(Vec3 &p) const;
     Color getColor() const;
-
+    void setColor(const Color &rhs) {
+        color = rhs;
+    }
 private:
     float radius;
     Vec3 center;

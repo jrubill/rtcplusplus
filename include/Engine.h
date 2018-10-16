@@ -11,15 +11,16 @@
 
 class Engine {
 public:
-    Engine() : width(500), height(500), buffer(), objs() 
-        { buffer.reserve(width * height); } 
-    
+    ~Engine();
+
     static Engine *getInstance();
     std::vector<Color>& getBuffer();
     Color raytrace(Ray&, float&, float&) const;
     void loadScene();
 private:
     Engine(const Engine&) = delete;
+    Engine() : width(500), height(500), buffer(), objs() 
+        { buffer.reserve(width * height); } 
 
     int width, height;
     std::vector<Color> buffer;

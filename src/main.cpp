@@ -46,4 +46,5 @@ int main(int argc, char *argv[]) {
     glutIdleFunc(display);
     init();
     glutMainLoop();
+    delete Engine::getInstance();
 }
