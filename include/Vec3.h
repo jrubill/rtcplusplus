@@ -69,7 +69,7 @@ public:
     }
 
     Vec3 operator/(const float scale) {
-        return Vec3(x * scale, y * scale, z * scale);
+        return Vec3(x / scale, y / scale, z / scale);
     }
 
     // added operators
